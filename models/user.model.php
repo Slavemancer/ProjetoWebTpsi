@@ -1,5 +1,5 @@
 <?php
-
+include_once("helpers/pdo.php");
 class User
 {
     private $id;
