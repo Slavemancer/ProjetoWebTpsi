@@ -24,7 +24,7 @@ switch ($action) {
             if (empty($user)) {
                 $invalido = true;
             } else {
-                header("location:index.html");
+                header("location:dashboard.php");
             };
         };
         break;
