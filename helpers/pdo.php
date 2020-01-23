@@ -16,7 +16,7 @@ class ConexaoBD
 
     public function criarConexao()
     {
-        $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname;
+        $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";charset=utf8";
         $user = $this->user;
         $passwd = $this->password;
 

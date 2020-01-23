@@ -1,5 +1,6 @@
 <?php
 include_once("models/user.model.php");
+session_start();
 switch ($action) {
     case "Registar":
         $user = new User();
@@ -21,6 +22,8 @@ switch ($action) {
             $user->setEmail($data["email"]);
             $user->setPassword($data["password"]);
             $user = $user->login();
+            $_SESSION["user_id"] = $user[0]['id'];
+            var_dump($_SESSION["user_id"]);
             if (empty($user)) {
                 $invalido = true;
             } else {
