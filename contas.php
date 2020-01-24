@@ -1,7 +1,7 @@
 <?php
 $pageName = ucfirst(basename(__FILE__, '.php'));
-include("includes/header.php");
 include("controllers/conta.controller.php");
+include("includes/header.php");
 ?>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -47,19 +47,21 @@ include("controllers/conta.controller.php");
                                     <tbody>
                                         <?php
                                         foreach ($contas as $key => $conta) {
+                                            if ($_SESSION["user_id"] == $conta["user"]) {
                                         ?>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1"><?= $conta["nome"]; ?></td>
-                                                <td><?= $conta["banco"]; ?></td>
-                                                <td><?= $conta["valor"]; ?></td>
-                                                <td>
-                                                    <a href="editarconta.php?id=<?= $conta["id"] ?>"><button type="button" class="btn btn-block btn-warning">Editar</button></a>
-                                                </td>
-                                                <td>
-                                                    <a href="editarapagar.php?id=<?= $conta["id"] ?>"><button type="button" class="btn btn-block btn-danger">Apagar</button></a>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1"><?= $conta["nome"]; ?></td>
+                                                    <td><?= $conta["banco"]; ?></td>
+                                                    <td><?= $conta["valor"]; ?></td>
+                                                    <td>
+                                                        <a href="editarconta.php?id=<?= $conta["id"] ?>"><button type="button" class="btn btn-block btn-warning">Editar</button></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="apagarconta.php?id=<?= $conta["id"] ?>"><button type="button" class="btn btn-block btn-danger">Apagar</button></a>
+                                                    </td>
+                                                </tr>
+                                        <?php }
+                                        } ?>
                                     </tbody>
                                     <tfoot>
 

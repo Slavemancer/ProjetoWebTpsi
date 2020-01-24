@@ -30,7 +30,7 @@ class Conta
 
         $id = $this->id;
 
-        $sql = "DELETE FROM conta WHERE id = $id";
+        $sql = "DELETE FROM contas WHERE id = $id";
 
         return $conexao->exec($sql);
     }
@@ -57,7 +57,7 @@ class Conta
         $conexao = $conexaoBD->criarConexao();
 
         $user = $this->user;
-        $query = $conexao->query("SELECT * FROM contas where user=$user");
+        $query = $conexao->query("SELECT * FROM contas");
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -69,7 +69,9 @@ class Conta
         $id = $this->id;
         $sql = "SELECT * FROM contas where id = $id";
         $query = $conexao->query($sql);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        if ($query)
+            return $query->fetch(PDO::FETCH_ASSOC);
+        return false;
     }
 
     /**

@@ -1,8 +1,5 @@
 <?php
-if (!isset($_GET["id"])) {
-    header("Location:contas.php");
-    exit();
-}
+$pageName = ucfirst(basename(__FILE__, '.php'));
 include("includes/header.php");
 include("controllers/conta.controller.php");
 ?>
@@ -65,8 +62,9 @@ include("controllers/conta.controller.php");
                 }
 
                 ?>
+                <div class="col-sm-12 col-md-6"></div>
                 <div class="card-header">
-                    <h3 style="padding-right: 10px" class="card-title">Adicionar Contas</h3>
+                    <h3 style="padding-right: 10px" class="card-title">Editar Contas</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -78,10 +76,6 @@ include("controllers/conta.controller.php");
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <?php
-                                $contaOBJ->setID($_GET["id"]);
-                                $conta = $contaOBJ->getByID()
-                                ?>
                                 <form role="form">
                                     <div class="card-body">
                                         <div class="form-group ">
@@ -103,19 +97,13 @@ include("controllers/conta.controller.php");
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="quantidade">Conta</label>
-                                            <input name="qtd" type="number" class="form-control" id="quantidade" placeholder="Valor atual na conta em euros (€)" step="0.01">
+                                            <input name="qtd" type="number" class="form-control" id="quantidade" value="" placeholder="Valor atual na conta em euros (€)" step="0.01">
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <div class="pull-left btn-group">
-                                            <button name="editar" value="conta" type="submit" class="btn btn-warning">Comfirmar</button>
-                                        </div>
-                                        <div class="pull-right btn-group">
-                                            <a href="contas.php"> <button value="conta" class="btn btn-danger">Cancelar</button></a>
-                                        </div>
-
+                                        <button name="atualizar" value="conta" type="submit" class="btn btn-success">Atualizar</button>
                                     </div>
                                 </form>
                             </div>

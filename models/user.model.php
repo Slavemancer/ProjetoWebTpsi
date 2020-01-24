@@ -171,9 +171,20 @@ class User
     public function isValid()
     {
         if ($this->isEmpty($this->username) or $this->isEmpty($this->email) or $this->isEmpty($this->password)) {
-            return false;
-        } else {
-            return true;
+            return array(false, "vazio");
         }
+        $conexaoBD = new ConexaoBD();
+        $conexao = $conexaoBD->criarConexao();
+        $query = $conexao->query("SELECT * FROM users where email = '$this->email'");
+        $user = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($user)) {
+            return array(false, "email");
+        }
+        $query = $conexao->query("SELECT * FROM users where username = '$this->username'");
+        $user = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($user)) {
+            return array(false, "username");
+        }
+        return array(true, "");
     }
 }
